@@ -70,7 +70,7 @@
                     <div class="form-group">
                         <label for="short_description">{{ __('content.panel.projects.labels.short_description') }}: <span class="text-danger">*</span></label>
 
-                        <textarea name="short_description" id="short_description" class="form-control @error('short_description') is-invalid @enderror">{{ old('short_description', $project->short_description) }}</textarea>
+                        <textarea name="short_description" id="short_description" class="projects-tinymce form-control @error('short_description') is-invalid @enderror">{{ old('short_description', $project->short_description) }}</textarea>
 
                         @error('short_description')
                             <span class="invalid-feedback" role="alert">
@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label for="description">{{ __('content.panel.projects.labels.description') }}: <span class="text-danger">*</span></label>
 
-                        <textarea name="description" id="description" class="form-control @error('short_description') is-invalid @enderror">{{ old('description', $project->description) }}</textarea>
+                        <textarea name="description" id="description" class="projects-tinymce form-control @error('short_description') is-invalid @enderror">{{ old('description', $project->description) }}</textarea>
 
                         @error('description')
                             <span class="invalid-feedback" role="alert">
@@ -101,4 +101,12 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    tinymce.init({
+        selector: '.projects-tinymce'
+    });
+</script>
 @endsection
