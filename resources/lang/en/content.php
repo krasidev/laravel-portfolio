@@ -2,6 +2,7 @@
 
 return [
     'panel' => [
+        'choose-file' => 'Choose file',
         'profile' => [
             'labels' => [
                 'name' => 'Name',

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col">
                 <a href="{{ $project->url }}" target="_blank" class="card-link">
-                    <img src="/images/projects/{{ $project->image }}" alt="{{ $project->image }}" class="img-thumbnail" />
+                    <img src="{{ $project->imagePathWithTimestamp }}" class="img-thumbnail" />
                 </a>
             </div>
             <div class="col-12 col-md-8 col-xl-9 pt-3 pt-md-0">

@@ -3,6 +3,7 @@
 namespace App\Repository\Panel;
 
 use App\Models\Project;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use LazyElePHPant\Repository\Repository;
 
@@ -66,7 +67,11 @@ class ProjectRepository extends Repository
     public function forceDelete($id)
     {
         if ($this->getModel()->withTrashed()->where('id', $id)->exists()) {
-            return $this->getModel()->withTrashed()->findOrFail($id)->forceDelete();
+            $project = $this->getModel()->withTrashed()->findOrFail($id);
+
+            File::delete(public_path($project->imagePath));
+
+            return $project->forceDelete();
         }
     }
 }

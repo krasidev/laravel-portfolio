@@ -10,6 +10,8 @@ class Project extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const IMAGE_PATH = '/images/projects/';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -34,4 +36,18 @@ class Project extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s',
         'deleted_at' => 'datetime:Y-m-d H:i:s'
     ];
+
+    public function getImagePathAttribute()
+    {
+        if ($this->image) {
+            return self::IMAGE_PATH . $this->image;
+        }
+    }
+
+    public function getImagePathWithTimestampAttribute()
+    {
+        if ($this->imagePath) {
+            return $this->imagePath . '?' . strtotime($this->updated_at);
+        }
+    }
 }

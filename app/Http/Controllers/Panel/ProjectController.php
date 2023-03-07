@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\Project\StoreProjectRequest;
 use App\Http\Requests\Panel\Project\UpdateProjectRequest;
+use App\Models\Project;
 use App\Repository\Panel\ProjectRepository;
 use Illuminate\Http\Request;
 
@@ -49,14 +50,16 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $data = $request->only(['name', 'slug', 'url', 'short_description', 'description']);
+        $project = $this->repository->create($request->only(['name', 'slug', 'url', 'short_description', 'description']));
 
         if ($request->hasFile('image')) {
-            $data['image'] = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/projects'), $data['image']);
-        }
+            $image = $project->id . '.' . $request->image->extension();
+            $request->image->move(public_path(Project::IMAGE_PATH), $image);
 
-        $this->repository->create($data);
+            $project->update([
+                'image' => $image
+            ]);
+        }
 
         return redirect()->route('panel.projects.index')
             ->with('success', [
@@ -90,8 +93,8 @@ class ProjectController extends Controller
         $data = $request->only(['name', 'slug', 'url', 'short_description', 'description']);
 
         if ($request->hasFile('image')) {
-            $data['image'] = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/projects'), $data['image']);
+            $data['image'] = $id . '.' . $request->image->extension();
+            $request->image->move(public_path(Project::IMAGE_PATH), $data['image']);
         }
 
         $this->repository->update($data, $id);

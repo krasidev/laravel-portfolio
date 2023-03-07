@@ -52,11 +52,15 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-4">
+                <div class="col-12">
                     <div class="form-group">
                         <label for="image">{{ __('content.panel.projects.labels.image') }}:</label>
 
-                        <input id="image" type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror">
+                        <label class="form-control h-auto text-center p-4 form-control @error('image') is-invalid @enderror">
+                            <input id="image" type="file" name="image" id="image" class="d-none">
+
+                            <img src="{{ $project->imagePathWithTimestamp }}" class="mw-100" alt="{{ __('content.panel.choose-file') }}">
+                        </label>
 
                         @error('image')
                             <span class="invalid-feedback" role="alert">

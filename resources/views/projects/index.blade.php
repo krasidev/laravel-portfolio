@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card mb-4 shadow-sm d-flex flex-row flex-wrap">
                 <a href="{{ route('projects.show', ['project' => $project->slug]) }}" target="_blank" class="card-link">
-                    <img src="/images/projects/{{ $project->image }}" alt="{{ $project->image }}" class="card-img-top border-bottom" />
+                    <img src="{{ $project->imagePathWithTimestamp }}" class="card-img-top border-bottom" />
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">
