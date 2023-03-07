@@ -3,6 +3,7 @@
 use App\Http\Controllers\Panel\ProfileController;
 use App\Http\Controllers\Panel\ProjectController;
 use App\Http\Controllers\Panel\UserController;
+use App\Http\Controllers\ProjectController as ControllersProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ControllersProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{project}', [ControllersProjectController::class, 'show'])->name('projects.show');
 
 Route::group([
     'prefix' => 'panel',
