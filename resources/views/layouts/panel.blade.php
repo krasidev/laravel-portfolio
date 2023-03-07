@@ -81,6 +81,31 @@
 								<li class="nav-item">
 									<a href="{{ route('panel.profile.edit') }}" class="nav-link @if(request()->routeIs('panel.profile.edit')) active @endif">{{ __('menu.panel.profile.edit') }}</a>
 								</li>
+
+								<li class="nav-item">
+                                    @php
+                                        $isOpenCollapseUsers = request()->routeIs('panel.users.*');
+                                    @endphp
+									<a href="#collapseUsers" class="nav-link d-flex align-items-center @if(!$isOpenCollapseUsers) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseUsers ? 'true' : 'false' }}" aria-controls="collapseUsers">
+										{{ __('menu.panel.users.text') }}
+
+										<i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
+									</a>
+									<div id="collapseUsers" class="collapse @if($isOpenCollapseUsers) show @endif">
+										<ul class="nav flex-column">
+											<li class="nav-item">
+												<a href="{{ route('panel.users.index') }}" class="nav-link @if(request()->routeIs('panel.users.index')) active @endif">
+                                                    {{ __('menu.panel.users.index') }}
+                                                </a>
+											</li>
+											<li class="nav-item">
+												<a href="{{ route('panel.users.create') }}" class="nav-link @if(request()->routeIs('panel.users.create')) active @endif">
+                                                    {{ __('menu.panel.users.create') }}
+                                                </a>
+											</li>
+										</ul>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</nav>

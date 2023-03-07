@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Panel\ProfileController;
+use App\Http\Controllers\Panel\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +30,10 @@ Route::group([
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
+    //Users
+    Route::resource('users', UserController::class);
+    Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
+    Route::delete('users/{user}/force-delete', [UserController::class, 'forceDelete'])->name('users.force-delete');
 
 });
