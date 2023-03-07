@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Panel\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,16 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group([
+    'prefix' => 'panel',
+    'as' => 'panel.',
+    'middleware' => ['auth']
+], function() {
+    //Profile
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
 });
