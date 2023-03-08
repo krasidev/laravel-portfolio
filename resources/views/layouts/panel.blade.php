@@ -81,7 +81,7 @@
 								<li class="nav-item">
 									<a href="{{ route('panel.profile.edit') }}" class="nav-link @if(request()->routeIs('panel.profile.edit')) active @endif">{{ __('menu.panel.profile.edit') }}</a>
 								</li>
-
+                                @can('manage_system')
 								<li class="nav-item">
                                     @php
                                         $isOpenCollapseProjects = request()->routeIs('panel.projects.*');
@@ -131,6 +131,7 @@
 										</ul>
 									</div>
 								</li>
+                                @endcan
 							</ul>
 						</div>
 					</nav>

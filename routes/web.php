@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes([
+    'reset' => false
+]);
 
 Route::get('/', [ControllersProjectController::class, 'index'])->name('projects.index');
 Route::get('/projects/{project}', [ControllersProjectController::class, 'show'])->name('projects.show');
@@ -32,15 +34,16 @@ Route::group([
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 
-    //Projects
-    Route::resource('projects', ProjectController::class)->except('show');
-    Route::patch('projects/{project}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
-    Route::delete('projects/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('projects.force-delete');
-    Route::post('projects/reorder', [ProjectController::class, 'reorder'])->name('projects.reorder');
+    Route::middleware('can:manage_system')->group(function() {
+        //Projects
+        Route::resource('projects', ProjectController::class)->except('show');
+        Route::patch('projects/{project}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
+        Route::delete('projects/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('projects.force-delete');
+        Route::post('projects/reorder', [ProjectController::class, 'reorder'])->name('projects.reorder');
 
-    //Users
-    Route::resource('users', UserController::class)->except('show');
-    Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
-    Route::delete('users/{user}/force-delete', [UserController::class, 'forceDelete'])->name('users.force-delete');
-
+        //Users
+        Route::resource('users', UserController::class)->except('show');
+        Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
+        Route::delete('users/{user}/force-delete', [UserController::class, 'forceDelete'])->name('users.force-delete');
+    });
 });
