@@ -82,6 +82,16 @@ $(document).on('input propertychange', '.has-clear input[type="text"]', function
 });
 
 /**
+ * Function that initializes a image after upload.
+ */
+$(document).on('change', '[type="file"]', function (e) {
+    var url = URL.createObjectURL(e.target.files[0]); 
+
+    $(this).parent().find('img').attr('src', url);
+    URL.revokeObjectURL(url);
+});
+
+/**
  * Function that initializes a blur effect on main content when side nav is open on a mobile resolution.
  */
 window.navbarNavInit = function () {

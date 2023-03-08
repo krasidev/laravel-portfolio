@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Panel\ProfileController;
+use App\Http\Controllers\Panel\ProjectController;
 use App\Http\Controllers\Panel\UserController;
+use App\Http\Controllers\ProjectController as ControllersProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ControllersProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects/{project}', [ControllersProjectController::class, 'show'])->name('projects.show');
 
 Route::group([
     'prefix' => 'panel',
@@ -31,8 +32,14 @@ Route::group([
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 
+    //Projects
+    Route::resource('projects', ProjectController::class)->except('show');
+    Route::patch('projects/{project}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
+    Route::delete('projects/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('projects.force-delete');
+    Route::post('projects/reorder', [ProjectController::class, 'reorder'])->name('projects.reorder');
+
     //Users
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except('show');
     Route::patch('users/{user}/restore', [UserController::class, 'restore'])->name('users.restore');
     Route::delete('users/{user}/force-delete', [UserController::class, 'forceDelete'])->name('users.force-delete');
 

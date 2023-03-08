@@ -84,6 +84,31 @@
 
 								<li class="nav-item">
                                     @php
+                                        $isOpenCollapseProjects = request()->routeIs('panel.projects.*');
+                                    @endphp
+									<a href="#collapseProjects" class="nav-link d-flex align-items-center @if(!$isOpenCollapseProjects) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseProjects ? 'true' : 'false' }}" aria-controls="collapseProjects">
+										{{ __('menu.panel.projects.text') }}
+
+										<i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
+									</a>
+									<div id="collapseProjects" class="collapse @if($isOpenCollapseProjects) show @endif">
+										<ul class="nav flex-column">
+											<li class="nav-item">
+												<a href="{{ route('panel.projects.index') }}" class="nav-link @if(request()->routeIs('panel.projects.index')) active @endif">
+                                                    {{ __('menu.panel.projects.index') }}
+                                                </a>
+											</li>
+											<li class="nav-item">
+												<a href="{{ route('panel.projects.create') }}" class="nav-link @if(request()->routeIs('panel.projects.create')) active @endif">
+                                                    {{ __('menu.panel.projects.create') }}
+                                                </a>
+											</li>
+										</ul>
+									</div>
+								</li>
+
+								<li class="nav-item">
+                                    @php
                                         $isOpenCollapseUsers = request()->routeIs('panel.users.*');
                                     @endphp
 									<a href="#collapseUsers" class="nav-link d-flex align-items-center @if(!$isOpenCollapseUsers) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseUsers ? 'true' : 'false' }}" aria-controls="collapseUsers">

@@ -32,10 +32,10 @@ $(document).on('click', '.dt-bt-delete', function(e) {
 
     Swal.fire({
         icon: 'question',
-        title: element.attr('data-sweetalert2-title') ?? '{{ __('datatables.sweetalert2.delete.question.title') }}',
-        text: element.attr('data-sweetalert2-text') ?? '{{ __('datatables.sweetalert2.delete.question.text') }}',
-        confirmButtonText: element.attr('data-sweetalert2-confirm-button-text') ?? '{{ __('datatables.sweetalert2.delete.question.confirm-button-text') }}',
-        cancelButtonText: element.attr('data-sweetalert2-cancel-button-text') ?? '{{ __('datatables.sweetalert2.cancel-button-text') }}',
+        title: '{{ __('datatables.sweetalert2.delete.question.title') }}',
+        text: '{{ __('datatables.sweetalert2.delete.question.text') }}',
+        confirmButtonText: '{{ __('datatables.sweetalert2.delete.question.confirm-button-text') }}',
+        cancelButtonText: '{{ __('datatables.sweetalert2.cancel-button-text') }}',
         showCancelButton: true,
         buttonsStyling: false,
         customClass: {
@@ -65,10 +65,10 @@ $(document).on('click', '.dt-bt-restore', function(e) {
 
     Swal.fire({
         icon: 'question',
-        title: element.attr('data-sweetalert2-title') ?? '{{ __('datatables.sweetalert2.restore.question.title') }}',
-        text: element.attr('data-sweetalert2-text') ?? '{{ __('datatables.sweetalert2.restore.question.text') }}',
-        confirmButtonText: element.attr('data-sweetalert2-confirm-button-text') ?? '{{ __('datatables.sweetalert2.restore.question.confirm-button-text') }}',
-        cancelButtonText: element.attr('data-sweetalert2-cancel-button-text') ?? '{{ __('datatables.sweetalert2.cancel-button-text') }}',
+        title: '{{ __('datatables.sweetalert2.restore.question.title') }}',
+        text: '{{ __('datatables.sweetalert2.restore.question.text') }}',
+        confirmButtonText: '{{ __('datatables.sweetalert2.restore.question.confirm-button-text') }}',
+        cancelButtonText: '{{ __('datatables.sweetalert2.cancel-button-text') }}',
         showCancelButton: true,
         buttonsStyling: false,
         customClass: {
