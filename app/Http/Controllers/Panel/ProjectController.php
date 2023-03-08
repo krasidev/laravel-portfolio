@@ -138,4 +138,15 @@ class ProjectController extends Controller
     {
         return $this->repository->forceDelete($id);
     }
+
+    /**
+     * Reorder the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function reorder(Request $request)
+    {
+        return $this->repository->reorder($request->all());
+    }
 }

@@ -36,6 +36,7 @@ Route::group([
     Route::resource('projects', ProjectController::class)->except('show');
     Route::patch('projects/{project}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
     Route::delete('projects/{project}/force-delete', [ProjectController::class, 'forceDelete'])->name('projects.force-delete');
+    Route::post('projects/reorder', [ProjectController::class, 'reorder'])->name('projects.reorder');
 
     //Users
     Route::resource('users', UserController::class)->except('show');

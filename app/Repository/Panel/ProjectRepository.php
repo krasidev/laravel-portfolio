@@ -17,7 +17,8 @@ class ProjectRepository extends Repository
     public function data($data)
     {
 		$projects = $this->getModel()
-			->select('projects.*');
+			->select('projects.*')
+            ->orderBy('order', 'desc');
 
         if (request()->trashed) {
             $projects->onlyTrashed();
@@ -37,6 +38,10 @@ class ProjectRepository extends Repository
         $data['slug'] = Str::slug($data['slug']);
 
         $project = $this->getModel()->create($data);
+
+        $project->update([
+            'order' => $project->id
+        ]);
 
         return $project;
     }
@@ -72,6 +77,25 @@ class ProjectRepository extends Repository
             File::delete(public_path($project->imagePath));
 
             return $project->forceDelete();
+        }
+    }
+
+    public function reorder($data)
+    {
+        $ids = [];
+
+        foreach ($data as $position => $value) {
+            $ids[$position] = $value[1];
+        }
+
+        $projects = $this->getModel()->whereIn('id', $ids)->pluck('order', 'id');
+
+        if (count($projects)) {
+            foreach ($data as $value) {
+                $this->getModel()->findOrFail($value[0])->update([
+                    'order' => $projects[$value[1]]
+                ]);
+            }
         }
     }
 }

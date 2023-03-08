@@ -48,7 +48,7 @@
         var projectsTable = $('#projects-table').DataTable({
             serverSide: true,
             processing: true,
-            order: [[0, 'desc']],
+            ordering: false,
             ajax: {
                 url: '{!! route('panel.projects.index') !!}',
                 data: function (data) {
@@ -68,14 +68,41 @@
                 }
             },
             columns: [
-                { data: 'id', name: 'id', searchable: false },
+                { data: 'id', name: 'id', searchable: false, className: 'reorder bg-light'},
                 { data: 'name', name: 'name' },
                 { data: 'slug', name: 'slug' },
                 { data: 'created_at', name: 'created_at' },
                 { data: 'updated_at', name: 'updated_at' },
                 { data: 'deleted_at', name: 'deleted_at', visible: false },
                 { data: 'actions', name: 'actions', searchable: false, orderable: false, className: 'py-2' }
-            ]
+            ],
+            rowReorder: {
+                dataSrc: 'id',
+                selector: '.reorder'
+            }
+        });
+
+        projectsTable.on('row-reorder', function(e, diff, edit) {
+            var data = {};
+
+            for (var i = 0, ien = diff.length; i < ien; i++) {
+                data[diff[i].newPosition] = [
+                    diff[i].oldData,
+                    diff[i].newData
+                ];
+            }
+
+            if (ien) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: '{!! route('panel.projects.reorder') !!}',
+                    type: 'POST',
+                    data: data,
+                    dataType: "json"
+                });
+            }
         });
 
         projectsTableFilters.on('change', function() {
