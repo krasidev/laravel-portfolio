@@ -26,6 +26,10 @@ class ProjectRepository extends Repository
 
         $datatable = datatables()->eloquent($projects);
 
+        $datatable->editColumn('order', function($project) {
+            return view('panel.projects.table.table-order', compact('project'));
+        });
+
         $datatable->addColumn('actions', function($project) {
 			return view('panel.projects.table.table-actions', compact('project'));
 		});

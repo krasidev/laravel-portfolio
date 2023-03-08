@@ -27,6 +27,7 @@
             <thead>
                 <tr>
                     <th>{{ __('content.panel.projects.table.headers.id') }}</th>
+                    <th>{{ __('content.panel.projects.table.headers.order') }}</th>
                     <th>{{ __('content.panel.projects.table.headers.name') }}</th>
                     <th>{{ __('content.panel.projects.table.headers.slug') }}</th>
                     <th>{{ __('content.panel.projects.table.headers.created_at') }}</th>
@@ -61,14 +62,15 @@
                 complete: function (data) {
                     var trashed = parseInt(data.responseJSON.input.trashed);
 
-                    projectsTable.column(4).visible(!trashed);
-                    projectsTable.column(5).visible(trashed);
+                    projectsTable.column(5).visible(!trashed);
+                    projectsTable.column(6).visible(trashed);
 
                     $('[data-dt-toggle="tooltip"]').tooltip();
                 }
             },
             columns: [
-                { data: 'id', name: 'id', searchable: false, className: 'reorder bg-light'},
+                { data: 'id', name: 'id', searchable: false },
+                { data: 'order', name: 'order', searchable: false, className: 'reorder py-2'},
                 { data: 'name', name: 'name' },
                 { data: 'slug', name: 'slug' },
                 { data: 'created_at', name: 'created_at' },

@@ -28,6 +28,7 @@ return [
                 ],
                 'headers' => [
                     'id' => 'ID',
+                    'order' => 'Order',
                     'name' => 'Name',
                     'slug' => 'Slug',
                     'created_at' => 'Created At',
