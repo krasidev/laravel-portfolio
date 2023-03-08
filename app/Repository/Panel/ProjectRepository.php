@@ -86,18 +86,12 @@ class ProjectRepository extends Repository
 
     public function reorder($data)
     {
-        $ids = [];
-
-        foreach ($data as $position => $value) {
-            $ids[$position] = $value[1];
-        }
-
-        $projects = $this->getModel()->whereIn('id', $ids)->pluck('order', 'id');
+        $projects = $this->getModel()->whereIn('id', array_keys($data))->pluck('order', 'id');
 
         if (count($projects)) {
-            foreach ($data as $value) {
-                $this->getModel()->findOrFail($value[0])->update([
-                    'order' => $projects[$value[1]]
+            foreach ($data as $key => $id) {
+                $this->getModel()->findOrFail($id)->update([
+                    'order' => $projects[$key]
                 ]);
             }
         }

@@ -88,10 +88,7 @@
             var data = {};
 
             for (var i = 0, ien = diff.length; i < ien; i++) {
-                data[diff[i].newPosition] = [
-                    diff[i].oldData,
-                    diff[i].newData
-                ];
+                data[diff[i].newData] = diff[i].oldData;
             }
 
             if (ien) {
@@ -102,7 +99,7 @@
                     url: '{!! route('panel.projects.reorder') !!}',
                     type: 'POST',
                     data: data,
-                    dataType: "json"
+                    dataType: 'json'
                 });
             }
         });
