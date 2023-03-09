@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
+@section('url', $project->url)
+
 @section('title', $project->name)
+
+@section('image', asset($project->imagePathWithTimestamp))
 
 @section('content')
 <div class="card mb-4 shadow-sm">
