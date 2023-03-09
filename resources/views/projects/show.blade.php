@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $project->name)
+
 @section('content')
 <div class="card mb-4 shadow-sm">
     <div class="card-body">
