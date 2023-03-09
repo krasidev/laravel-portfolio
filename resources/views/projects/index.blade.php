@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('content.app.titles.projects'))
+
 @section('content')
 <div class="row column-count">
     @foreach ($projects as $project)

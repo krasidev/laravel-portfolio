@@ -1,13 +1,38 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    @if ($tracking_id = config('portfolio.tracking_id'))
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $tracking_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ $tracking_id }}');
+    </script>
+    @endif
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="@yield('url', url()->full())">
+    <meta property="og:title" content="{{ config('app.name', 'Laravel') }} - @yield('title')">
+    <meta property="og:description" content="@yield('description', config('portfolio.description', 'Laravel'))">
+    <meta property="og:image" content="@yield('image', config('portfolio.image'))">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="@yield('url', url('index.php'))">
+    <meta property="twitter:title" content="{{ config('app.name', 'Laravel') }} - @yield('title')">
+    <meta property="twitter:description" content="@yield('description', config('portfolio.description', 'Laravel'))">
+    <meta property="twitter:image" content="@yield('image', config('portfolio.image'))">
+
+    <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+    <meta name="description" content="@yield('description', config('portfolio.description', 'Laravel'))">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

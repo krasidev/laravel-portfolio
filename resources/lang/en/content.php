@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'app' => [
+        'titles' => [
+            'projects' => 'Projects'
+        ]
+    ],
     'panel' => [
         'choose-file' => 'Choose file',
         'profile' => [
