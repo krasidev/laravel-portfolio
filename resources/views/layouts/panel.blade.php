@@ -34,6 +34,14 @@
                     <ul class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="navbarDropdown">
                         <li>
                             <a href="{{ route('panel.profile.edit') }}" class="dropdown-item @if(request()->routeIs('panel.profile.edit')) active @endif">
+                                <i class="fas fa-house text-dark mr-1"></i>
+                                {{ __('menu.panel.profile.edit') }}
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('panel.profile.edit') }}" class="dropdown-item @if(request()->routeIs('panel.profile.edit')) active @endif">
+                                <i class="fas fa-user text-dark mr-1"></i>
                                 {{ __('menu.panel.profile.edit') }}
                             </a>
                         </li>
@@ -44,6 +52,7 @@
                             <a href="{{ route('logout') }}" class="dropdown-item"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
+                                <i class="fas fa-power-off text-dark mr-1"></i>
                                 {{ __('Logout') }}
                             </a>
 
@@ -83,7 +92,8 @@
                                         $isOpenCollapseGoogleAnalytics = request()->routeIs('panel.google-analytics.*');
                                     @endphp
 									<a href="#collapseGoogleAnalytics" class="nav-link d-flex align-items-center @if(!$isOpenCollapseGoogleAnalytics) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseGoogleAnalytics ? 'true' : 'false' }}" aria-controls="collapseGoogleAnalytics">
-										{{ __('menu.panel.google-analytics.text') }}
+										<i class="fas fa-chart-simple mr-2"></i>
+                                        {{ __('menu.panel.google-analytics.text') }}
 
 										<i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
 									</a>
@@ -91,32 +101,32 @@
 										<ul class="nav flex-column">
 											<li class="nav-item">
 												<a href="{{ route('panel.google-analytics.urls') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.urls')) active @endif">
-                                                    {{ __('menu.panel.google-analytics.urls') }}
+                                                    <span class="pl-1">{{ __('menu.panel.google-analytics.urls') }}</span>
                                                 </a>
 											</li>
 											<li class="nav-item">
 												<a href="{{ route('panel.google-analytics.locations') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.locations')) active @endif">
-                                                    {{ __('menu.panel.google-analytics.locations') }}
+                                                    <span class="pl-1">{{ __('menu.panel.google-analytics.locations') }}</span>
                                                 </a>
 											</li>
 											<li class="nav-item">
 												<a href="{{ route('panel.google-analytics.languages') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.languages')) active @endif">
-                                                    {{ __('menu.panel.google-analytics.languages') }}
+                                                    <span class="pl-1">{{ __('menu.panel.google-analytics.languages') }}</span>
                                                 </a>
 											</li>
 											<li class="nav-item">
 												<a href="{{ route('panel.google-analytics.browsers') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.browsers')) active @endif">
-                                                    {{ __('menu.panel.google-analytics.browsers') }}
+                                                    <span class="pl-1">{{ __('menu.panel.google-analytics.browsers') }}</span>
                                                 </a>
 											</li>
 											<li class="nav-item">
 												<a href="{{ route('panel.google-analytics.device-categories') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.device-categories')) active @endif">
-                                                    {{ __('menu.panel.google-analytics.device-categories') }}
+                                                    <span class="pl-1">{{ __('menu.panel.google-analytics.device-categories') }}</span>
                                                 </a>
 											</li>
 											<li class="nav-item">
 												<a href="{{ route('panel.google-analytics.operating-systems') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.operating-systems')) active @endif">
-                                                    {{ __('menu.panel.google-analytics.operating-systems') }}
+                                                    <span class="pl-1">{{ __('menu.panel.google-analytics.operating-systems') }}</span>
                                                 </a>
 											</li>
 										</ul>
@@ -128,7 +138,8 @@
                                         $isOpenCollapseProjects = request()->routeIs('panel.projects.*');
                                     @endphp
 									<a href="#collapseProjects" class="nav-link d-flex align-items-center @if(!$isOpenCollapseProjects) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseProjects ? 'true' : 'false' }}" aria-controls="collapseProjects">
-										{{ __('menu.panel.projects.text') }}
+										<i class="fas fa-diagram-project mr-2"></i>
+                                        {{ __('menu.panel.projects.text') }}
 
 										<i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
 									</a>
@@ -136,12 +147,12 @@
 										<ul class="nav flex-column">
 											<li class="nav-item">
 												<a href="{{ route('panel.projects.index') }}" class="nav-link @if(request()->routeIs('panel.projects.index')) active @endif">
-                                                    {{ __('menu.panel.projects.index') }}
+                                                    <span class="pl-1">{{ __('menu.panel.projects.index') }}</span>
                                                 </a>
 											</li>
 											<li class="nav-item">
 												<a href="{{ route('panel.projects.create') }}" class="nav-link @if(request()->routeIs('panel.projects.create')) active @endif">
-                                                    {{ __('menu.panel.projects.create') }}
+                                                    <span class="pl-1">{{ __('menu.panel.projects.create') }}</span>
                                                 </a>
 											</li>
 										</ul>
@@ -153,7 +164,8 @@
                                         $isOpenCollapseUsers = request()->routeIs('panel.users.*');
                                     @endphp
 									<a href="#collapseUsers" class="nav-link d-flex align-items-center @if(!$isOpenCollapseUsers) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseUsers ? 'true' : 'false' }}" aria-controls="collapseUsers">
-										{{ __('menu.panel.users.text') }}
+                                        <i class="fas fa-users mr-2"></i>
+                                        {{ __('menu.panel.users.text') }}
 
 										<i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
 									</a>
@@ -161,12 +173,12 @@
 										<ul class="nav flex-column">
 											<li class="nav-item">
 												<a href="{{ route('panel.users.index') }}" class="nav-link @if(request()->routeIs('panel.users.index')) active @endif">
-                                                    {{ __('menu.panel.users.index') }}
+                                                    <span class="pl-1">{{ __('menu.panel.users.index') }}</span>
                                                 </a>
 											</li>
 											<li class="nav-item">
 												<a href="{{ route('panel.users.create') }}" class="nav-link @if(request()->routeIs('panel.users.create')) active @endif">
-                                                    {{ __('menu.panel.users.create') }}
+                                                    <span class="pl-1">{{ __('menu.panel.users.create') }}</span>
                                                 </a>
 											</li>
 										</ul>
