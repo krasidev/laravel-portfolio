@@ -83,7 +83,15 @@
 
                                 <ul class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="navbarDropdown">
                                     <li>
+                                        <a href="{{ route('panel.google-analytics.urls') }}" class="dropdown-item">
+                                            <i class="fas fa-chart-simple text-dark mr-1"></i>
+                                            {{ __('menu.panel.google-analytics.text') }}
+                                        </a>
+                                    </li>
+
+                                    <li>
                                         <a href="{{ route('panel.profile.edit') }}" class="dropdown-item">
+                                            <i class="fas fa-user text-dark mr-1"></i>
                                             {{ __('menu.panel.profile.edit') }}
                                         </a>
                                     </li>
@@ -94,6 +102,7 @@
                                         <a href="{{ route('logout') }}" class="dropdown-item"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-power-off text-dark mr-1"></i>
                                             {{ __('Logout') }}
                                         </a>
 
