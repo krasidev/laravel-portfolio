@@ -25,3 +25,11 @@
     </div>
 </div>
 @endsection
+
+@section('styles')
+<style>
+    .card-text :last-child {
+        margin-bottom: 0;
+    }
+</style>
+@endsection

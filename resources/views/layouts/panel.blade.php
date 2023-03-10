@@ -34,13 +34,6 @@
                     <ul class="dropdown-menu dropdown-menu-right position-absolute" aria-labelledby="navbarDropdown">
                         <li>
                             <a href="{{ route('panel.profile.edit') }}" class="dropdown-item @if(request()->routeIs('panel.profile.edit')) active @endif">
-                                <i class="fas fa-house text-dark mr-1"></i>
-                                {{ __('menu.panel.profile.edit') }}
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('panel.profile.edit') }}" class="dropdown-item @if(request()->routeIs('panel.profile.edit')) active @endif">
                                 <i class="fas fa-user text-dark mr-1"></i>
                                 {{ __('menu.panel.profile.edit') }}
                             </a>
