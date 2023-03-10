@@ -79,7 +79,48 @@
 						<div id="panel-side-nav-group" class="flex-grow-1 overflow-auto on-hover">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a href="{{ route('panel.profile.edit') }}" class="nav-link @if(request()->routeIs('panel.profile.edit')) active @endif">{{ __('menu.panel.profile.edit') }}</a>
+                                    @php
+                                        $isOpenCollapseGoogleAnalytics = request()->routeIs('panel.google-analytics.*');
+                                    @endphp
+									<a href="#collapseGoogleAnalytics" class="nav-link d-flex align-items-center @if(!$isOpenCollapseGoogleAnalytics) collapsed @endif" data-toggle="collapse" aria-expanded="{{ $isOpenCollapseGoogleAnalytics ? 'true' : 'false' }}" aria-controls="collapseGoogleAnalytics">
+										{{ __('menu.panel.google-analytics.text') }}
+
+										<i class="plus-minus-rotate flex-shrink-0 ml-auto collapsed"></i>
+									</a>
+									<div id="collapseGoogleAnalytics" class="collapse @if($isOpenCollapseGoogleAnalytics) show @endif">
+										<ul class="nav flex-column">
+											<li class="nav-item">
+												<a href="{{ route('panel.google-analytics.urls') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.urls')) active @endif">
+                                                    {{ __('menu.panel.google-analytics.urls') }}
+                                                </a>
+											</li>
+											<li class="nav-item">
+												<a href="{{ route('panel.google-analytics.locations') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.locations')) active @endif">
+                                                    {{ __('menu.panel.google-analytics.locations') }}
+                                                </a>
+											</li>
+											<li class="nav-item">
+												<a href="{{ route('panel.google-analytics.languages') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.languages')) active @endif">
+                                                    {{ __('menu.panel.google-analytics.languages') }}
+                                                </a>
+											</li>
+											<li class="nav-item">
+												<a href="{{ route('panel.google-analytics.browsers') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.browsers')) active @endif">
+                                                    {{ __('menu.panel.google-analytics.browsers') }}
+                                                </a>
+											</li>
+											<li class="nav-item">
+												<a href="{{ route('panel.google-analytics.device-categories') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.device-categories')) active @endif">
+                                                    {{ __('menu.panel.google-analytics.device-categories') }}
+                                                </a>
+											</li>
+											<li class="nav-item">
+												<a href="{{ route('panel.google-analytics.operating-systems') }}" class="nav-link @if(request()->routeIs('panel.google-analytics.operating-systems')) active @endif">
+                                                    {{ __('menu.panel.google-analytics.operating-systems') }}
+                                                </a>
+											</li>
+										</ul>
+									</div>
 								</li>
                                 @can('manage_system')
 								<li class="nav-item">

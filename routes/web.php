@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Panel\GoogleAnalyticsController;
 use App\Http\Controllers\Panel\ProfileController;
 use App\Http\Controllers\Panel\ProjectController;
 use App\Http\Controllers\Panel\UserController;
@@ -29,6 +30,25 @@ Route::group([
     'as' => 'panel.',
     'middleware' => ['auth']
 ], function() {
+    //Google Analytics
+    Route::controller(GoogleAnalyticsController::class)->group(function() {
+        Route::get('google-analytics/urls', 'urls')->name('google-analytics.urls');
+        Route::get('google-analytics/locations', 'locations')->name('google-analytics.locations');
+        Route::get('google-analytics/languages', 'languages')->name('google-analytics.languages');
+        Route::get('google-analytics/browsers', 'browsers')->name('google-analytics.browsers');
+        Route::get('google-analytics/device-categories', 'deviceCategories')->name('google-analytics.device-categories');
+        Route::get('google-analytics/operating-systems', 'operatingSystems')->name('google-analytics.operating-systems');
+
+        Route::middleware('can:manage_system')->group(function() {
+            Route::get('google-analytics/sync/urls', 'syncUrls')->name('google-analytics.sync.urls');
+            Route::get('google-analytics/sync/locations', 'syncLocations')->name('google-analytics.sync.locations');
+            Route::get('google-analytics/sync/languages', 'syncLanguages')->name('google-analytics.sync.languages');
+            Route::get('google-analytics/sync/browsers', 'syncBrowsers')->name('google-analytics.sync.browsers');
+            Route::get('google-analytics/sync/device-categories', 'syncDeviceCategories')->name('google-analytics.sync.device-categories');
+            Route::get('google-analytics/sync/operating-systems', 'syncOperatingSystems')->name('google-analytics.sync.operating-systems');
+        });
+    });
+
     //Profile
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
