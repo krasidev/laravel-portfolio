@@ -23,12 +23,12 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->job(new ProcessGoogleAnalyticsUrl(10))->everyTwoMinutes();
-        $schedule->job(new ProcessGoogleAnalyticsLocation(10))->everyTwoMinutes();
-        $schedule->job(new ProcessGoogleAnalyticsLanguage(10))->everyTwoMinutes();
-        $schedule->job(new ProcessGoogleAnalyticsBrowser(10))->everyTwoMinutes();
-        $schedule->job(new ProcessGoogleAnalyticsDeviceCategory(10))->everyTwoMinutes();
-        $schedule->job(new ProcessGoogleAnalyticsOperatingSystem(10))->everyTwoMinutes();
+        $schedule->job(new ProcessGoogleAnalyticsUrl(2))->daily();
+        $schedule->job(new ProcessGoogleAnalyticsLocation(2))->daily();
+        $schedule->job(new ProcessGoogleAnalyticsLanguage(2))->daily();
+        $schedule->job(new ProcessGoogleAnalyticsBrowser(2))->daily();
+        $schedule->job(new ProcessGoogleAnalyticsDeviceCategory(2))->daily();
+        $schedule->job(new ProcessGoogleAnalyticsOperatingSystem(2))->daily();
     }
 
     /**

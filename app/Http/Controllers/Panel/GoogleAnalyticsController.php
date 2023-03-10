@@ -23,7 +23,7 @@ class GoogleAnalyticsController extends Controller
 
     public function __construct()
     {
-        $this->days = 10;
+        $this->days = 2;
     }
 
     public function urls(Request $request)
