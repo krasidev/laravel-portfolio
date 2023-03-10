@@ -42,7 +42,7 @@ class GoogleAnalyticsLocation extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeGetTotalData($query)
+    public function scopeTotalData($query)
     {
         return $query->select([
             'continent',
@@ -50,6 +50,6 @@ class GoogleAnalyticsLocation extends Model
             'city',
             DB::raw('SUM(visitors) as visitors'),
             DB::raw('SUM(pageviews) as pageviews')
-        ])->groupBy(['continent', 'country', 'city'])->get();
+        ])->groupBy(['continent', 'country', 'city']);
     }
 }

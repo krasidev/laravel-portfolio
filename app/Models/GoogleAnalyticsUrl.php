@@ -41,13 +41,13 @@ class GoogleAnalyticsUrl extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeGetTotalData($query)
+    public function scopeTotalData($query)
     {
         return $query->select([
             'path',
             'title',
             DB::raw('SUM(visitors) as visitors'),
             DB::raw('SUM(pageviews) as pageviews')
-        ])->groupBy(['path', 'title'])->get();
+        ])->groupBy(['path', 'title']);
     }
 }
