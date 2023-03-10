@@ -16,15 +16,14 @@ use App\Models\GoogleAnalyticsLocation;
 use App\Models\GoogleAnalyticsOperatingSystem;
 use App\Models\GoogleAnalyticsUrl;
 use Illuminate\Http\Request;
-use Spatie\Analytics\Period;
 
 class GoogleAnalyticsController extends Controller
 {
-    protected $period;
+    protected $days;
 
     public function __construct()
     {
-        $this->period = Period::days(10);
+        $this->days = 10;
     }
 
     public function urls(Request $request)
@@ -197,7 +196,7 @@ class GoogleAnalyticsController extends Controller
 
     public function syncUrls()
     {
-        dispatch(new ProcessGoogleAnalyticsUrl($this->period));
+        dispatch(new ProcessGoogleAnalyticsUrl($this->days));
 
         return redirect()->route('panel.google-analytics.urls')
             ->with('success', [
@@ -208,7 +207,7 @@ class GoogleAnalyticsController extends Controller
 
     public function syncLocations()
     {
-        dispatch(new ProcessGoogleAnalyticsLocation($this->period));
+        dispatch(new ProcessGoogleAnalyticsLocation($this->days));
 
         return redirect()->route('panel.google-analytics.locations')
             ->with('success', [
@@ -219,7 +218,7 @@ class GoogleAnalyticsController extends Controller
 
     public function syncLanguages()
     {
-        dispatch(new ProcessGoogleAnalyticsLanguage($this->period));
+        dispatch(new ProcessGoogleAnalyticsLanguage($this->days));
 
         return redirect()->route('panel.google-analytics.languages')
             ->with('success', [
@@ -230,7 +229,7 @@ class GoogleAnalyticsController extends Controller
 
     public function syncBrowsers()
     {
-        dispatch(new ProcessGoogleAnalyticsBrowser($this->period));
+        dispatch(new ProcessGoogleAnalyticsBrowser($this->days));
 
         return redirect()->route('panel.google-analytics.browsers')
             ->with('success', [
@@ -241,7 +240,7 @@ class GoogleAnalyticsController extends Controller
 
     public function syncDeviceCategories()
     {
-        dispatch(new ProcessGoogleAnalyticsDeviceCategory($this->period));
+        dispatch(new ProcessGoogleAnalyticsDeviceCategory($this->days));
 
         return redirect()->route('panel.google-analytics.device-categories')
             ->with('success', [
@@ -252,7 +251,7 @@ class GoogleAnalyticsController extends Controller
 
     public function syncOperatingSystems()
     {
-        dispatch(new ProcessGoogleAnalyticsOperatingSystem($this->period));
+        dispatch(new ProcessGoogleAnalyticsOperatingSystem($this->days));
 
         return redirect()->route('panel.google-analytics.operating-systems')
             ->with('success', [

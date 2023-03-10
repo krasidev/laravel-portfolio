@@ -23,9 +23,9 @@ class ProcessGoogleAnalyticsLanguage implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Period $period)
+    public function __construct($days)
     {
-        $this->period = $period;
+        $this->period = Period::days($days);
     }
 
     /**
